@@ -1,13 +1,83 @@
 function obtenerPregunta() {
 
-    fetch('https://opentdb.com/api.php?amount=10')
+    fetch('https://opentdb.com/api.php?amount=10&type=multiple')
         .then(res => res.json())
-        .then(datos => crearPregunta(datos));
+        .then(datos => mostrarPregunta(datos));
 
 };
 
 
-function crearPregunta(dato, i) {
+function crearPregunta(dato) {
+
+    let arrayPreguntas = [];
+
+    let arrayRespuestasIncorrectas = [];
+
+    let arrayRespuestaCorrecta = [];
+
+    for (let i = 0; i < 10; i++) {
+
+        arrayPreguntas.push(dato.results[i].question);
+
+        arrayRespuestasIncorrectas.push(dato.results[i].incorrect_answers);
+
+        arrayRespuestaCorrecta.push(dato.results[i].correct_answer);
+
+    }
+
+
+    return [arrayPreguntas, arrayRespuestasIncorrectas, arrayRespuestaCorrecta];
+
+};
+
+function mostrarPregunta(datos) {
+
+
+    let pregunta = crearPregunta(datos)[0][0]; //traigo los datos del array de la primera pregunta
+
+    let respuestasIncorrectas = crearPregunta(datos)[1][0]; //traigo los datos del array de las respuestas incorrectas
+
+    let respuestaCorrecta = crearPregunta(datos)[2][0]; //traigo los datos del array de la respuesta correcta
+
+    let arrayRespuestas = [...respuestasIncorrectas, respuestaCorrecta];
+
+    let divPregunta = document.getElementById("contenedorPregunta"); //mostramos la pregunta en su contenedor div
+
+    let textoPregunta = document.createTextNode(pregunta);
+
+    divPregunta.appendChild(textoPregunta);
+
+    let numAleatorio; // número aleatorio entre 0, 1, 2 y 3
+
+    let divRepuesta;
+
+    let respuesta;
+
+    let textoRespuesta;
+
+    let preguntasIncluidas = [];
+
+    for (let i = 1; i < 5; i++) {
+
+        while(preguntasIncluidas.includes(numAleatorio)){
+
+            numAleatorio = Math.trunc(Math.floor(Math.random() * (3)));
+
+        }
+        
+         
+        divRepuesta = document.getElementById("respuesta" + i);
+
+        respuesta = arrayRespuestas[numAleatorio];
+
+        textoRespuesta = document.createTextNode(respuesta);
+
+        divRepuesta.appendChild(textoRespuesta); 
+
+        preguntasIncluidas.push(numAleatorio);
+      
+        
+    }
 
 
 
@@ -15,6 +85,8 @@ function crearPregunta(dato, i) {
 
 
 };
+
+
 
 obtenerPregunta();
 
