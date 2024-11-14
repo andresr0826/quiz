@@ -2,7 +2,7 @@ function obtenerPregunta() {
 
     fetch('https://opentdb.com/api.php?amount=10&type=multiple')
         .then(res => res.json())
-        .then(datos => crearPregunta(datos));
+        .then(datos => mostrarPregunta(datos));
 
 };
 
