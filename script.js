@@ -2,7 +2,7 @@ function obtenerPregunta() {
 
     fetch('https://opentdb.com/api.php?amount=10&type=multiple')
         .then(res => res.json())
-        .then(datos => mostrarPregunta(datos));
+        .then(datos => crearPregunta(datos));
 
 };
 
@@ -30,14 +30,14 @@ function crearPregunta(dato) {
 
 };
 
-function mostrarPregunta(datos) {
+function mostrarPregunta(datos, indice=0) {
 
 
-    let pregunta = crearPregunta(datos)[0][0]; //traigo los datos del array de la primera pregunta
+    let pregunta = crearPregunta(datos)[0][indice]; //traigo los datos del array de la primera pregunta
 
-    let respuestasIncorrectas = crearPregunta(datos)[1][0]; //traigo los datos del array de las respuestas incorrectas
+    let respuestasIncorrectas = crearPregunta(datos)[1][indice]; //traigo los datos del array de las respuestas incorrectas
 
-    let respuestaCorrecta = crearPregunta(datos)[2][0]; //traigo los datos del array de la respuesta correcta
+    let respuestaCorrecta = crearPregunta(datos)[2][indice]; //traigo los datos del array de la respuesta correcta
 
     let arrayRespuestas = [...respuestasIncorrectas, respuestaCorrecta];
 
@@ -47,48 +47,66 @@ function mostrarPregunta(datos) {
 
     divPregunta.appendChild(textoPregunta);
 
-    let numAleatorio; // número aleatorio entre 0, 1, 2 y 3
-
     let divRepuesta;
 
     let respuesta;
 
     let textoRespuesta;
 
+    let numAleatorio; // número aleatorio entre 0, 1, 2 y 3
+
     let preguntasIncluidas = [];
 
     for (let i = 1; i < 5; i++) {
 
-        while(preguntasIncluidas.includes(numAleatorio)){
 
-            numAleatorio = Math.trunc(Math.floor(Math.random() * (3)));
+        do {
 
-        }
-        
-         
-        divRepuesta = document.getElementById("respuesta" + i);
+            numAleatorio = Math.trunc(Math.floor(Math.random() * (4)));
+
+        } while (preguntasIncluidas.includes(numAleatorio)); // si el nº de pregunta ya está incluido, repetir
+
+
+        divRepuesta = document.getElementById("respuesta" + i); // pinto la pregunta
 
         respuesta = arrayRespuestas[numAleatorio];
 
         textoRespuesta = document.createTextNode(respuesta);
 
-        divRepuesta.appendChild(textoRespuesta); 
+        divRepuesta.appendChild(textoRespuesta);
 
         preguntasIncluidas.push(numAleatorio);
-      
-        
+
+
+
     }
-
-
-
-
 
 
 };
 
+function siguientePregunta(datos=datosParaPreguntas){
+
+
+
+    mostrarPregunta(datos, 1);
+
+
+}
+
 
 
 obtenerPregunta();
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*let resultados = { "response_code": 0, "results": [{ "type": "bXVsdGlwbGU=", "difficulty": "bWVkaXVt", "category": "RW50ZXJ0YWlubWVudDogRmlsbQ==", "question": "SW4gdGhlIEZyaWRheSBUaGUgMTN0aCBzZXJpZXMsIHdoYXQgaXMgSmFzb24ncyBtb3RoZXIncyBmaXJzdCBuYW1lPw==", "correct_answer": "UGFtZWxh", "incorrect_answers": ["TWFyeQ==", "Q2hyaXN0aW5l", "QW5nZWxpbmU="] }, 
