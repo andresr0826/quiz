@@ -1,0 +1,118 @@
+/* General */
+body {
+    background-color: #1e1e1e; /* Fondo oscuro */
+    color: #f8c291; /* Texto naranja pálido */
+    font-family: 'Creepster', cursive; /* Fuente temática */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Encabezados */
+h1 {
+    color: #ff7518; /* Naranja Halloween */
+    font-size: 3.5rem;
+    text-shadow: 3px 3px 10px #000000; /* Sombra espeluznante */
+    margin-top: 20px;
+}
+
+h2 {
+    color: #f8c291; /* Morado suave */
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px #000000;
+}
+
+h3 {
+    color: #d9b3ff; /* Morado suave */
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px #000000;
+}
+
+
+
+/* Pregunta */
+#contenedorPregunta {
+    background-color: #2e2e2e;
+    border: 2px solid #ff7518;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 40px auto;
+    width: 70%;
+    box-shadow: 0 0 15px 5px #ff7518;
+    font-size: 1.3rem;
+    color: #f8c291;
+}
+
+/* Respuestas */
+#contenedorRespuestas ol {
+    list-style-type: decimal; /* Números visibles */
+    margin: 0 auto;
+    padding-left: 40px; /* Espacio adicional para números */
+    width: 40%;
+}
+
+#contenedorRespuestas li {
+    background-color: #3e3e3e;
+    border: 2px solid #d9b3ff;
+    border-radius: 5px;
+    color: #f8c291;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    padding: 10px 20px; /* Espacio interno ajustado */
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    list-style-position: inside; /* Números dentro del contenido */
+}
+
+#contenedorRespuestas li:hover {
+    background-color: #ff7518;
+    color: #1e1e1e;
+    transform: scale(1.01);
+}
+
+#contenedorRespuestas li.seleccionado {
+    background-color: #ff7518;
+    color: #1e1e1e;
+    transform: scale(1.05); /* Efecto cuando se selecciona */
+}
+
+/* Botones */
+button {
+    background-color: #ff7518;
+    border: none;
+    border-radius: 5px;
+    color: #1e1e1e;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin: 20px;
+    padding: 12px 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #d9534f;
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+/* Select */
+select {
+    background-color: #3e3e3e;
+    border: 2px solid #ff7518;
+    border-radius: 5px;
+    color: #f8c291;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    padding: 5px 10px;
+}
+
+/* Sombra para las respuestas seleccionadas */
+#contenedorRespuestas li.seleccionado {
+    box-shadow: 0 0 15px 5px #ff7518;
+}
+
+
+
