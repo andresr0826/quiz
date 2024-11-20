@@ -10,6 +10,10 @@
 
     <h1>Quiz Halloween</h1>
 
+    <button onclick="empezarQuiz()" id="empezarQuiz">Empezar Quiz</button>
+
+    <section class="oculto">
+
     <h2>Pregunta <span id="spanPregunta"></span></h2>
 
     <h3>Elige la opción correcta y pulsa responder</h3>
@@ -28,11 +32,14 @@
 
     </div>  
 
-    <button onclick="responder(respuestaSeleccionada, datosGlobales)">Responder</button><br><br>
 
-    <button onclick="siguientePregunta(indiceGlobal)">Siguiente pregunta</button>
+    <button onclick="responder(respuestaSeleccionada, datosGlobales)" id="boton1">Responder</button><br><br>
 
+    <button onclick="siguientePregunta()">Siguiente pregunta ></button>
 
+    </section>
+
+    <div id="resultados" class="oculto"><a href="index.html">Mostrar resultados</a></div>
 
     <script src="script.js"></script>
     

@@ -1,69 +1,93 @@
-let datosGlobales; // variables en las que se guarda el JSON obtenido 
-let indiceGlobal; 
+let datosGlobales; // variable en las que se guarda el JSON obtenido 
+let posPregunta; // indica la posición de los datos desde la primera pregunta "0" hasta la última "9"
 let respuestaSeleccionada;
+let numRespuestaSeleccionada;
 let resultados = [];
 
-function obtenerPregunta() {
-  fetch("https://opentdb.com/api.php?amount=10&type=multiple")
-    .then((res) => res.json())
-    .then((datos) => {
-      datosGlobales = datos;
-      mostrarPregunta(datosGlobales);
-    });
-}
+function empezarQuiz() {
+
+    document.getElementById("empezarQuiz").setAttribute("class", "oculto");
+
+    document.getElementsByTagName("section")[0].removeAttribute("class");
+
+
+    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+        .then((res) => res.json())
+        .then((datos) => {
+            datosGlobales = datos;
+            mostrarPregunta(datosGlobales);
+        });
+};
 
 
 function mostrarPregunta(datos, indice = 0) {
 
-    document.getElementById("spanPregunta").innerText=indice+1;
+    document.getElementById("spanPregunta").innerText = indice + 1;
 
 
-    // Accedemos directamente a los datos de la pregunta
+    // traemos los datos de las preguntas y respuestas
     let pregunta = datos.results[indice].question;
     let respuestasIncorrectas = datos.results[indice].incorrect_answers;
     let respuestaCorrecta = datos.results[indice].correct_answer;
 
-    // Unimos todas las respuestas en un array
+    //usamos spread para generar un array uniendo todas las respuestas
     let arrayRespuestas = [...respuestasIncorrectas, respuestaCorrecta];
 
-    // Mostramos la pregunta en su contenedor
+
     let divPregunta = document.getElementById("contenedorPregunta");
     divPregunta.innerText = pregunta;
 
-    let preguntasIncluidas = []; // Números aleatorios ya usados
+    let preguntasIncluidas = []; // guardamos los números de preguntas que ya se han incluido para no repetirlas
     let divRespuesta;
     let respuesta;
     let numAleatorio;
 
-    // Asignamos respuestas de manera aleatoria usando tus preferencias
+    //se asigna una respuesta a cada contenedor de forma aleatoria
     for (let i = 1; i < 5; i++) {
         do {
-            numAleatorio = Math.trunc(Math.random() * 4); // Genera un número entre 0 y 3
-        } while (preguntasIncluidas.includes(numAleatorio)); // Evita repeticiones
+            numAleatorio = Math.trunc(Math.random() * 4); // número aleatorio entre 0 y 3
+        } while (preguntasIncluidas.includes(numAleatorio)); // si el número ya ha salido hacemos que se genere otro
 
         divRespuesta = document.getElementById("respuesta" + i);
-        divRespuesta.innerText = ""; // Limpiamos previamente el contenido
+        divRespuesta.innerText = "";
 
         respuesta = arrayRespuestas[numAleatorio];
-        divRespuesta.innerText = respuesta; // Asignamos la respuesta
+        divRespuesta.innerText = respuesta;
 
-        preguntasIncluidas.push(numAleatorio); // Marcamos este número como usado
+        preguntasIncluidas.push(numAleatorio); // incluimos el número en el array de los ya usados
     }
 
-    indiceGlobal = indice + 1; // Actualizamos el índice global
+    posPregunta = indice + 1; // se actualiza el índice global
 }
 
 function siguientePregunta() {
 
-    let indice = indiceGlobal;
+    document.getElementsByTagName("button")[1].removeAttribute("class");
 
-    if(indice<10){
+    for (let i = 1; i < 5; i++) {
 
-  mostrarPregunta(datosGlobales, indiceGlobal);
+        document.getElementById("respuesta" + i).removeAttribute("class");
 
-    }else alert("Ha finalizado el quiz");
+    };
 
-    
+
+    if (posPregunta < 10) {
+
+        mostrarPregunta(datosGlobales, posPregunta);
+
+    } else {
+
+        boton = document.getElementsByTagName("button");
+
+        boton[1].setAttribute("class", "oculto");
+
+        boton[2].setAttribute("class", "oculto");
+
+        document.getElementById("resultados").removeAttribute("class");
+
+        alert("Ha finalizado el quiz");
+
+    }
 
 }
 
@@ -82,39 +106,39 @@ function seleccionarRespuesta(numRespuesta) {
 
     respuestaSeleccionada = liRespuesta.innerHTML;
 
-    
+    numRespuestaSeleccionada = numRespuesta;
+
+
 }
 
-function responder(respuestaSeleccionada, datosGlobales){
+function responder() {
 
-    let indice = indiceGlobal-1;
+    document.getElementsByTagName("button")[1].setAttribute("class", "oculto");
 
-    console.log(indice);
+
+    let indice = posPregunta - 1;
 
     let resp = datosGlobales.results[indice].correct_answer;
 
-    alert("resp correcta " + resp);
 
-    alert("resp seleccionada " + respuestaSeleccionada);
+    if (respuestaSeleccionada == resp) {
 
-    if(respuestaSeleccionada==resp){
-
-        console.log("Entra if corr");
+        document.getElementById("respuesta" + numRespuestaSeleccionada).setAttribute("class", "correcta");
 
         resultados.push(1);
 
-        
-    }else {
+        localStorage.setItem("puntuacion", JSON.stringify(resultados));
 
-        console.log("Entra if incorr");
+
+    } else {
 
         resultados.push(0);
+
+        console.log(numRespuestaSeleccionada);
+
+        document.getElementById("respuesta" + numRespuestaSeleccionada).setAttribute("class", "incorrecta");
+
+        localStorage.setItem("puntuacion", JSON.stringify(resultados));
     }
 
-    console.log(resultados);
-
-
 };
-
-
-obtenerPregunta();

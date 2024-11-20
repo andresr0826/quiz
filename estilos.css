@@ -1,30 +1,33 @@
-/* General */
 body {
-    background-color: #1e1e1e; /* Fondo oscuro */
-    color: #f8c291; /* Texto naranja pálido */
-    font-family: 'Creepster', cursive; /* Fuente temática */
+    background-color: #1e1e1e;
+
+    color: #f8c291;
+
+    font-family: 'Creepster', cursive;
     margin: 0;
     padding: 0;
     text-align: center;
 }
 
-/* Encabezados */
 h1 {
-    color: #ff7518; /* Naranja Halloween */
+    color: #ff7518;
+
     font-size: 3.5rem;
-    text-shadow: 3px 3px 10px #000000; /* Sombra espeluznante */
+    text-shadow: 3px 3px 10px #000000;
     margin-top: 20px;
 }
 
 h2 {
-    color: #f8c291; /* Morado suave */
+    color: #f8c291;
+
     font-size: 1.8rem;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px #000000;
 }
 
 h3 {
-    color: #d9b3ff; /* Morado suave */
+    color: #d9b3ff;
+
     font-size: 1.5rem;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px #000000;
@@ -32,7 +35,7 @@ h3 {
 
 
 
-/* Pregunta */
+/* estilo regunta */
 #contenedorPregunta {
     background-color: #2e2e2e;
     border: 2px solid #ff7518;
@@ -45,11 +48,12 @@ h3 {
     color: #f8c291;
 }
 
-/* Respuestas */
+/* estilo respuestas */
 #contenedorRespuestas ol {
-    list-style-type: decimal; /* Números visibles */
+    list-style-type: decimal;
+
     margin: 0 auto;
-    padding-left: 40px; /* Espacio adicional para números */
+    padding-left: 40px;
     width: 40%;
 }
 
@@ -60,11 +64,11 @@ h3 {
     color: #f8c291;
     font-size: 1.2rem;
     margin: 10px 0;
-    padding: 10px 20px; /* Espacio interno ajustado */
+    padding: 10px 20px;
     text-align: left;
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    list-style-position: inside; /* Números dentro del contenido */
+    list-style-position: inside;
 }
 
 #contenedorRespuestas li:hover {
@@ -73,20 +77,30 @@ h3 {
     transform: scale(1.01);
 }
 
+#contenedorRespuestas li.correcta {
+    color: rgb(37, 196, 37)
+}
+
+#contenedorRespuestas li.incorrecta {
+
+    color : red
+}
+
 #contenedorRespuestas li.seleccionado {
     background-color: #ff7518;
     color: #1e1e1e;
-    transform: scale(1.05); /* Efecto cuando se selecciona */
+    transform: scale(1.05);
+    /* Efecto cuando se selecciona */
 }
 
-/* Botones */
+/*botones */
 button {
     background-color: #ff7518;
     border: none;
     border-radius: 5px;
     color: #1e1e1e;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin: 20px;
     padding: 12px 25px;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -98,7 +112,7 @@ button:hover {
     color: #ffffff;
 }
 
-/* Select */
+/* casilla seleccionada */
 select {
     background-color: #3e3e3e;
     border: 2px solid #ff7518;
@@ -109,10 +123,23 @@ select {
     padding: 5px 10px;
 }
 
-/* Sombra para las respuestas seleccionadas */
+/* sombra casilla seleccionada */
 #contenedorRespuestas li.seleccionado {
-    box-shadow: 0 0 15px 5px #ff7518;
+    box-shadow: 0 0 12px 4px #ff7518;
 }
 
+div#resultados a {
 
+    color: #ff7518;
 
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px #000000;
+
+}
+
+.oculto {
+
+    display : none;
+    
+}
