@@ -6,6 +6,7 @@ let resultados = [];
 
 function empezarQuiz() {
 
+
     document.getElementById("empezarQuiz").setAttribute("class", "oculto");
 
     document.getElementsByTagName("section")[0].removeAttribute("class");
@@ -57,7 +58,7 @@ function mostrarPregunta(datos, indice = 0) {
         preguntasIncluidas.push(numAleatorio); // incluimos el número en el array de los ya usados
     }
 
-    posPregunta = indice + 1; // se actualiza el índice global
+    posPregunta = indice + 1; 
 }
 
 function siguientePregunta() {
@@ -77,15 +78,16 @@ function siguientePregunta() {
 
     } else {
 
+
+
         boton = document.getElementsByTagName("button");
 
         boton[1].setAttribute("class", "oculto");
 
         boton[2].setAttribute("class", "oculto");
 
-        document.getElementById("resultados").removeAttribute("class");
+        document.getElementById("mostrarResultados").removeAttribute("class");
 
-        alert("Ha finalizado el quiz");
 
     }
 
@@ -96,7 +98,7 @@ function seleccionarRespuesta(numRespuesta) {
     let liRespuesta;
 
     let respuestas = document.querySelectorAll("#contenedorRespuestas li");
-    respuestas.forEach((respuesta) => {
+    respuestas.forEach(function(respuesta) {
         respuesta.classList.remove("seleccionado");
     });
 
@@ -142,3 +144,5 @@ function responder() {
     }
 
 };
+
+

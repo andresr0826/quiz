@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Halloween</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
+
+
+
 <body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="question.html">Hacer Quiz</a></li>
+                <li><a href="results.html">Resultados</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <h1>Quiz Halloween</h1>
 
@@ -14,34 +28,36 @@
 
     <section class="oculto">
 
-    <h2>Pregunta <span id="spanPregunta"></span></h2>
+        <h2>Pregunta <span id="spanPregunta"></span></h2>
 
-    <h3>Elige la opción correcta y pulsa responder</h3>
+        <h3>Elige la opción correcta y pulsa responder</h3>
 
-    <div id="contenedorPregunta"></div>
+        <div id="contenedorPregunta"></div>
 
-    <div id="contenedorRespuestas">
-        
-        <ol>
-            
-            <li id="respuesta1" onclick="seleccionarRespuesta(1)"></li>
-            <li id="respuesta2" onclick="seleccionarRespuesta(2)"></li>
-            <li id="respuesta3" onclick="seleccionarRespuesta(3)"></li>
-            <li id="respuesta4" onclick="seleccionarRespuesta(4)"></li>
-        </ol>
+        <div id="contenedorRespuestas">
 
-    </div>  
+            <ol>
+
+                <li id="respuesta1" onclick="seleccionarRespuesta(1)"></li>
+                <li id="respuesta2" onclick="seleccionarRespuesta(2)"></li>
+                <li id="respuesta3" onclick="seleccionarRespuesta(3)"></li>
+                <li id="respuesta4" onclick="seleccionarRespuesta(4)"></li>
+            </ol>
+
+        </div>
 
 
-    <button onclick="responder(respuestaSeleccionada, datosGlobales)" id="boton1">Responder</button><br><br>
+        <button onclick="responder(respuestaSeleccionada, datosGlobales)" id="boton1">Responder</button><br><br>
 
-    <button onclick="siguientePregunta()">Siguiente pregunta ></button>
+        <button onclick="siguientePregunta()">Siguiente pregunta ></button>
 
     </section>
 
-    <div id="resultados" class="oculto"><a href="index.html">Mostrar resultados</a></div>
+    <div id="mostrarResultados" class="oculto"><a href="results.html">Genialas finalizado el Quiz VER RESULTADOS</a>
+    </div>
 
     <script src="script.js"></script>
-    
+
 </body>
+
 </html>
