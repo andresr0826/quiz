@@ -100,9 +100,13 @@ function responder() {
     resultados.push(1);
   } else {
     resultados.push(0);
-    document
-      .getElementById("respuesta" + numRespuestaSeleccionada)
-      .setAttribute("class", "incorrecta");
+    document.getElementById("respuesta" + numRespuestaSeleccionada).setAttribute("class", "incorrecta");
+    let respuestas = document.querySelectorAll("#contenedorRespuestas li");
+    respuestas.forEach(function (respuesta, index) {
+      if (respuesta.innerText === resp) {
+        respuesta.classList.add("correcta");
+      }
+    });
   };
 };
 

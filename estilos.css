@@ -42,6 +42,11 @@ nav ul li a:hover {
     color: #1e1e1e;
 }
 
+/* Ocultar elementos */
+.oculto {
+    display: none;
+}
+
 /* Encabezado principal */
 h1 {
     color: #ff7518;
@@ -53,14 +58,14 @@ h1 {
 /* Subtítulos */
 h2 {
     color: #f8c291;
-    font-size: 28px; /* Antes 1.8rem */
+    font-size: 28px; 
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px #000000;
 }
 
 h3 {
     color: #d9b3ff;
-    font-size: 24px; /* Antes 1.5rem */
+    font-size: 24px; 
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px #000000;
 }
@@ -74,7 +79,7 @@ h3 {
     margin: 40px auto;
     width: 70%;
     box-shadow: 0 0 15px 5px #ff7518;
-    font-size: 20px; /* Antes 1.3rem */
+    font-size: 20px; 
     color: #f8c291;
 }
 
@@ -91,7 +96,7 @@ h3 {
     border: 2px solid #d9b3ff;
     border-radius: 5px;
     color: #f8c291;
-    font-size: 18px; /* Antes 1.2rem */
+    font-size: 18px; 
     margin: 10px 0;
     padding: 10px 20px;
     text-align: left;
@@ -118,7 +123,7 @@ h3 {
     background-color: #ff7518;
     color: #1e1e1e;
     transform: scale(1.05);
-    box-shadow: 0 0 12px 4px #ff7518; /* Efecto de selección */
+    box-shadow: 0 0 12px 4px #ff7518; 
 }
 
 /* Botones */
@@ -128,7 +133,7 @@ button {
     border-radius: 5px;
     color: #1e1e1e;
     cursor: pointer;
-    font-size: 20px; /* Antes 1.2rem */
+    font-size: 20px; 
     margin: 20px;
     padding: 12px 25px;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -146,7 +151,7 @@ select {
     border: 2px solid #ff7518;
     border-radius: 5px;
     color: #f8c291;
-    font-size: 18px; /* Antes 1.1rem */
+    font-size: 18px;
     margin-top: 10px;
     padding: 5px 10px;
 }
@@ -176,7 +181,7 @@ div#resultados {
 
 div#mostrarResultados a, div#volverInicio a {
     color: #f8c291;
-    font-size: 32px; /* Antes 2rem */
+    font-size: 32px;
     margin-bottom: 20px;
     display: block;
     text-decoration: none;
@@ -187,7 +192,3 @@ div#mostrarResultados a:hover {
 
 }
 
-/* Ocultar elementos */
-.oculto {
-    display: none;
-}
