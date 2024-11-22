@@ -1,37 +1,38 @@
 function mostrarResultados() {
-    let resultados; // aquí se va a almacenar los datos de puntuación que traemos de localstorage
+  // Traemos el array de estadísticas del localStorage
+  const estadisticas = JSON.parse(localStorage.getItem("estadisticas")) || [];
 
-    const datosPuntuacion = localStorage.getItem("puntuacion"); // Obtener el valor del localStorage
+  const contenedorResultados = document.getElementById("resultados");
 
-    if (datosPuntuacion) {
-        resultados = JSON.parse(datosPuntuacion); // si existe transforma el json
+  if (estadisticas.length === 0) {
+    contenedorResultados.innerHTML =
+      "<p>No se encontraron resultados. Haz el Quiz primero</p>";
+  } else {
+    // Obtener los detalles de la última partida
+    const ultimaPartida = estadisticas[estadisticas.length - 1];
+
+    // Mostrar los detalles de la última partida
+    let detalleUltimoQuiz = "";
+
+    detalleUltimoQuiz += `<p>Fecha de la partida: ${ultimaPartida.fecha}</p>`;
+    detalleUltimoQuiz += `<p>Puntuación: ${ultimaPartida.puntuacion}</p>`;
+
+    if (ultimaPartida.detalle && ultimaPartida.detalle.length > 0) {
+      // Usamos forEach para recorrer los detalles de las respuestas
+      ultimaPartida.detalle.forEach((acierto, index) => {
+        detalleUltimoQuiz += `<p>Pregunta ${index + 1}: ${
+          acierto === 1
+            ? "<span class='correcto'>Correcta</span>"
+            : "<span class='incorrecto'>Incorrecta</span>"
+        }</p>`;
+      });
     } else {
-        resultados = []; // Si no existe se le asigna un array vacío
+      detalleUltimoQuiz +=
+        "<p>No hay detalles disponibles. Haz primero el Quiz</p>";
     }
 
-    const contenedorResultados = document.getElementById("resultados");
-
-    if (resultados.length == 0) {
-        contenedorResultados.innerHTML = "<p>No se encontraron resultados. Haz el Quiz primero</p>";
-    } else {
-        let puntuacionTotal = 0;
-        let detalleResultados = ""; // variable para ir almacenando el texto del resultado de cada pregunta
-
-        for (let i = 0; i < resultados.length; i++) {
-
-            let acierto = resultados[i]; // se suma 1 si es un acierto o 0 si es un fallo
-            puntuacionTotal += acierto;
-
-            // se muestra en un <p> el resultado de cada pregunta con el operador ternario
-            detalleResultados += "<p>Pregunta " + (i + 1) + ": " + (acierto == 1 ? "Correcta" : "Incorrecta") + "</p>";
-        }
-
-        // Mostrar puntuación total y detalles
-        contenedorResultados.innerHTML = `
-            <p>Aciertos: ${puntuacionTotal} de ${resultados.length}</p>
-            ${detalleResultados}
-        `;
-    }
+    contenedorResultados.innerHTML = detalleUltimoQuiz;
+  }
 }
 
 mostrarResultados();
